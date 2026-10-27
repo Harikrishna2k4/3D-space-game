@@ -1,11 +1,9 @@
 import * as THREE from "https://esm.sh/three@0.160.0";
 import {Renderer} from  "../components/renderer.js";
 import {Camera} from "../components/Camera.js";
-import {shipGroupmovement,player, shipGroup} from "../components/Player.js";
+import {shipGroupmovement,player, shipGroup, monster} from "../components/Player.js";
 import { SkyMap } from "../components/Skymap.js";
-import { Earth } from "../components/planets.js";
-import { Mars } from "../components/planets.js";
-import { Jupiter } from "../components/planets.js";
+import { Earth, Mars, Jupiter } from "../components/planets.js";
 
 let front = false;
 let back = false;
@@ -51,7 +49,7 @@ const scene = new THREE.Scene();
 scene.add(shipGroup);
 const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambientLight);
-
+scene.add(monster);
 const dirLight = new THREE.DirectionalLight();
 dirLight.position.set(-100,-100,200);
 scene.add(dirLight);
@@ -83,24 +81,27 @@ function animate() {
     theta += 0.003;
     if(earth){
         earth.position.x = 3500* Math.cos(theta);
-        earth.rotateY(theta*0.003);
-        earth.rotateZ(theta*0.002);
+        earth.rotateY(theta*0.01);
+        //earth.rotateZ(theta*0.002);
         earth.position.y = 3000* Math.sin(theta);
         earth.position.z = 0;
     }
      if(jupiter){
-        jupiter.position.x = 5500* Math.cos(theta * 0.5);
-        jupiter.rotateY(theta*0.001);
-        jupiter.rotateZ(theta*0.001);
-        jupiter.position.y = 5500* Math.sin(theta * 0.6);
+        jupiter.position.x = 5500* Math.cos(theta * 0.3);
+        jupiter.rotateY(theta*0.005);
+        //jupiter.rotateZ(theta*0.001);
+        jupiter.position.y = 5500* Math.sin(theta * 0.4);
         jupiter.position.z = 2000;
     }
     if(mars){
         mars.position.x = -4200* Math.cos(theta * 0.6);
         mars.rotateY(theta*0.0014);
-        mars.rotateZ(theta*0.002);
+        //mars.rotateZ(theta*0.002);
         mars.position.y = 4000* Math.sin(theta * 0.1);
         mars.position.z = -1000;
+    }
+    if(theta == 7){
+        theta = 0;
     }
     
     

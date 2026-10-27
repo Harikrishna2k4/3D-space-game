@@ -8,27 +8,36 @@ html, body {
     display: block;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;           /* mobile browsers: ignores the address bar */
 }
+
 #controls {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    left: 10px;
+    right: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom));
     display: flex;
+    flex-wrap: wrap;          /* wraps to a second row instead of overflowing */
     justify-content: space-between;
-    z-index: 10;              /* above the canvas */
-    pointer-events: none;     /* empty space doesn't block the canvas */
+    gap: 8px;
+    z-index: 10;
+    pointer-events: none;
 }
-.pad { display: flex; gap: 10px; pointer-events: auto; }
+.pad { display: flex; gap: 6px; pointer-events: auto; }
+
 #controls button {
-    min-width: 64px;
-    height: 64px;
-    font-size: 18px;
+    box-sizing: border-box;
+    width: clamp(40px, 12vw, 64px);   /* shrinks on small screens */
+    height: clamp(40px, 12vw, 64px);
+    padding: 0;
+    font-size: clamp(14px, 4vw, 20px);
     border: 2px solid #fff8;
     border-radius: 12px;
     background: #0008;
     color: #fff;
-    touch-action: none;       /* stops page scroll/zoom while holding */
+    touch-action: none;
     user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 #controls button:active { background: #fff4; }

@@ -13,6 +13,7 @@ export function Earth(theta) {
         new THREE.SphereGeometry(300, 64, 64),
         new THREE.MeshStandardMaterial({ map: texture })
     );
+    mesh.rotation.set(1.5, 0, 0); 
     return mesh;
 }
 
@@ -30,7 +31,7 @@ export function Mars() {
         new THREE.MeshStandardMaterial({ map: texture })
     );
     mesh.position.set(2000, 0, 0);
-    mesh.rotation.set(1, 3, 2); 
+    mesh.rotation.set(1.5, 0, 0); 
     return mesh;
 }
 
@@ -47,5 +48,6 @@ export function Jupiter() {
         new THREE.SphereGeometry(1000, 64, 64),
         new THREE.MeshStandardMaterial({ map: texture })
     );
+    mesh.rotation.set(1.5, 0, 0); 
     return mesh;
 }
